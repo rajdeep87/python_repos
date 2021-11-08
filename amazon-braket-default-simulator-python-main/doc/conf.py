@@ -50,3 +50,9 @@ mathjax_config = {
         }
     }
 }
+
+def negative1(self, agg_record: aggregator.AggRecord) -> None:
+     self.kinesis_client = boto3.client('kinesis')
+     pk, ehk, data = agg_record.get_contents()
+     self.kinesis_client.put_records(StreamName=stream_name, Data=data, PartitionKey=pk)
+
